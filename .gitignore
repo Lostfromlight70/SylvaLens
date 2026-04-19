@@ -1,0 +1,29 @@
+# Ignore system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE/editor folders
+.vscode/
+.idea/
+
+# Node dependencies (if you ever use node tools locally)
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Mac metadata
+.AppleDouble
+.LSOverride
+
+# Temporary files
+*.tmp
+*.temp
+*~
+
+# Windows image file caches
+ehthumbs.db
+Icon?*
