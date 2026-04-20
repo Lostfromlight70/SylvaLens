@@ -4,13 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffd700">
     <title>Sylva Lens - Portfolio</title>
+
+    <!-- DNS prefetch for image domains (if using CDN in future) -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
+
+    <!-- Preload critical images -->
+    <link rel="preload" as="image" href="Weddings/DSC_2202.jpg" type="image/jpeg">
+    <link rel="preload" as="image" href="Weddings/DSC_2211.jpg" type="image/jpeg">
+    <link rel="preload" as="image" href="Weddings/DSC_2215.jpg" type="image/jpeg">
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -140,27 +150,111 @@
                 <h3 class="category-title">Weddings</h3>
                 <p class="category-description">Capturing timeless moments of love and celebration</p>
                 <div class="portfolio-grid">
-                    <div class="portfolio-item" style="background-image: url('Weddings/DSC_2202.jpg');"></div>
-                    <div class="portfolio-item" style="background-image: url('Weddings/DSC_2211.jpg');"></div>
-                    <div class="portfolio-item" style="background-image: url('Weddings/DSC_2215.jpg');"></div>
-                    <div class="portfolio-item" style="background-image: url('Weddings/DSC_2216.jpg');"></div>
-                    <div class="portfolio-item" style="background-image: url('Weddings/DSC_2218.jpg');"></div>
-                    <div class="portfolio-item" style="background-image: url('Weddings/DSC_2320.jpg');"></div>
-                    <div class="portfolio-item" style="background-image: url('Weddings/DSC_7578.jpeg');"></div>
-                    <div class="portfolio-item" style="background-image: url('Weddings/DSC_7982.jpeg');"></div>
-                    <div class="portfolio-item" style="background-image: url('Weddings/IMG_0490.jpeg');"></div>
-                    <div class="portfolio-item" style="background-image: url('Weddings/IMG_1846.jpeg');"></div>
-                    <div class="portfolio-item" style="background-image: url('Weddings/IMG_1848.jpeg');"></div>
-                    <div class="portfolio-item" style="background-image: url('Weddings/IMG_1849.JPG');"></div>
-                    <div class="portfolio-item" style="background-image: url('Weddings/IMG_1850.JPG');"></div>
-                    <div class="portfolio-item" style="background-image: url('Weddings/IMG_1852.JPG');"></div>
-                    <div class="portfolio-item" style="background-image: url('Weddings/IMG_1853.JPG');"></div>
-                    <div class="portfolio-item" style="background-image: url('Weddings/IMG_8679.jpeg');"></div>
-                    <div class="portfolio-item" style="background-image: url('Weddings/IMG_8684.jpeg');"></div>
-                    <div class="portfolio-item" style="background-image: url('Weddings/IMG_9819.jpeg');"></div>
-                    <div class="portfolio-item" style="background-image: url('Weddings/IMG_9820.jpeg');"></div>
-                    <div class="portfolio-item" style="background-image: url('Weddings/IMG_9836.jpeg');"></div>
-                    <div class="portfolio-item" style="background-image: url('Weddings/IMG_9845.jpeg');"></div>
+                    <div class="portfolio-item lazy-loading" data-src="Weddings/DSC_2202.jpg" data-loaded="false">
+                        <div class="image-placeholder">
+                            <div class="loading-spinner"></div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item lazy-loading" data-src="Weddings/DSC_2211.jpg" data-loaded="false">
+                        <div class="image-placeholder">
+                            <div class="loading-spinner"></div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item lazy-loading" data-src="Weddings/DSC_2215.jpg" data-loaded="false">
+                        <div class="image-placeholder">
+                            <div class="loading-spinner"></div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item lazy-loading" data-src="Weddings/DSC_2216.jpg" data-loaded="false">
+                        <div class="image-placeholder">
+                            <div class="loading-spinner"></div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item lazy-loading" data-src="Weddings/DSC_2218.jpg" data-loaded="false">
+                        <div class="image-placeholder">
+                            <div class="loading-spinner"></div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item lazy-loading" data-src="Weddings/DSC_2320.jpg" data-loaded="false">
+                        <div class="image-placeholder">
+                            <div class="loading-spinner"></div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item lazy-loading" data-src="Weddings/DSC_7578.jpeg" data-loaded="false">
+                        <div class="image-placeholder">
+                            <div class="loading-spinner"></div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item lazy-loading" data-src="Weddings/DSC_7982.jpeg" data-loaded="false">
+                        <div class="image-placeholder">
+                            <div class="loading-spinner"></div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item lazy-loading" data-src="Weddings/IMG_0490.jpeg" data-loaded="false">
+                        <div class="image-placeholder">
+                            <div class="loading-spinner"></div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item lazy-loading" data-src="Weddings/IMG_1846.jpeg" data-loaded="false">
+                        <div class="image-placeholder">
+                            <div class="loading-spinner"></div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item lazy-loading" data-src="Weddings/IMG_1848.jpeg" data-loaded="false">
+                        <div class="image-placeholder">
+                            <div class="loading-spinner"></div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item lazy-loading" data-src="Weddings/IMG_1849.JPG" data-loaded="false">
+                        <div class="image-placeholder">
+                            <div class="loading-spinner"></div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item lazy-loading" data-src="Weddings/IMG_1850.JPG" data-loaded="false">
+                        <div class="image-placeholder">
+                            <div class="loading-spinner"></div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item lazy-loading" data-src="Weddings/IMG_1852.JPG" data-loaded="false">
+                        <div class="image-placeholder">
+                            <div class="loading-spinner"></div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item lazy-loading" data-src="Weddings/IMG_1853.JPG" data-loaded="false">
+                        <div class="image-placeholder">
+                            <div class="loading-spinner"></div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item lazy-loading" data-src="Weddings/IMG_8679.jpeg" data-loaded="false">
+                        <div class="image-placeholder">
+                            <div class="loading-spinner"></div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item lazy-loading" data-src="Weddings/IMG_8684.jpeg" data-loaded="false">
+                        <div class="image-placeholder">
+                            <div class="loading-spinner"></div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item lazy-loading" data-src="Weddings/IMG_9819.jpeg" data-loaded="false">
+                        <div class="image-placeholder">
+                            <div class="loading-spinner"></div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item lazy-loading" data-src="Weddings/IMG_9820.jpeg" data-loaded="false">
+                        <div class="image-placeholder">
+                            <div class="loading-spinner"></div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item lazy-loading" data-src="Weddings/IMG_9836.jpeg" data-loaded="false">
+                        <div class="image-placeholder">
+                            <div class="loading-spinner"></div>
+                        </div>
+                    </div>
+                    <div class="portfolio-item lazy-loading" data-src="Weddings/IMG_9845.jpeg" data-loaded="false">
+                        <div class="image-placeholder">
+                            <div class="loading-spinner"></div>
+                        </div>
+                    </div>
                     <div class="portfolio-item upload-slot" data-category="weddings">
                         <div class="upload-area">
                             <div class="upload-icon">📸</div>
@@ -420,6 +514,9 @@
             // URL Parameter Authentication System
             const ADMIN_PARAM = 'edit'; // URL parameter to enable editing: ?edit=true
             const uploadSlots = document.querySelectorAll('.upload-slot');
+
+            // Convert existing images to lazy loading
+            convertToLazyLoading();
 
             // Function to check if editing is enabled via URL parameter
             function isEditingEnabled() {
@@ -688,6 +785,9 @@
             function initializeLazyLoading() {
                 const lazyImages = document.querySelectorAll('.portfolio-item.lazy-loading');
 
+                // Preload first few images for better initial experience
+                preloadAboveFoldImages();
+
                 if ('IntersectionObserver' in window) {
                     const imageObserver = new IntersectionObserver((entries, observer) => {
                         entries.forEach(entry => {
@@ -698,7 +798,7 @@
                             }
                         });
                     }, {
-                        rootMargin: '50px 0px', // Start loading 50px before the image comes into view
+                        rootMargin: '100px 0px', // Start loading 100px before the image comes into view
                         threshold: 0.01
                     });
 
@@ -713,15 +813,71 @@
                 }
             }
 
-            // Load a single lazy image
+            // Preload images that are likely above the fold with high priority
+            function preloadAboveFoldImages() {
+                const aboveFoldImages = document.querySelectorAll('.portfolio-item.lazy-loading:nth-child(-n+9)'); // First 9 images for better coverage
+
+                // Load first 3 with high priority (immediate)
+                const highPriorityImages = Array.from(aboveFoldImages).slice(0, 3);
+                highPriorityImages.forEach(item => {
+                    loadLazyImage(item);
+                });
+
+                // Load next 6 with slight delay to prevent overwhelming the network
+                setTimeout(() => {
+                    const mediumPriorityImages = Array.from(aboveFoldImages).slice(3, 9);
+                    mediumPriorityImages.forEach(item => {
+                        loadLazyImage(item);
+                    });
+                }, 100);
+            }
+
+            // Convert existing background-image styles to lazy loading
+            function convertToLazyLoading() {
+                const portfolioItems = document.querySelectorAll('.portfolio-item:not(.upload-slot):not(.lazy-loading)');
+
+                portfolioItems.forEach(item => {
+                    const backgroundImage = item.style.backgroundImage;
+                    if (backgroundImage && backgroundImage.includes('url(')) {
+                        // Extract the URL from background-image
+                        const urlMatch = backgroundImage.match(/url\(['"]?([^'"]+)['"]?\)/);
+                        if (urlMatch && urlMatch[1]) {
+                            const imageUrl = urlMatch[1];
+
+                            // Clear the inline background-image
+                            item.style.backgroundImage = '';
+
+                            // Add lazy loading attributes
+                            item.classList.add('lazy-loading');
+                            item.setAttribute('data-src', imageUrl);
+                            item.setAttribute('data-loaded', 'false');
+
+                            // Add loading placeholder
+                            item.innerHTML = '<div class="image-placeholder"><div class="loading-spinner"></div></div>';
+                        }
+                    }
+                });
+            }
+
+            // Load a single lazy image with WebP support
             function loadLazyImage(lazyItem) {
                 const src = lazyItem.getAttribute('data-src');
                 if (src && lazyItem.getAttribute('data-loaded') === 'false') {
+                    // Mark as loading to prevent duplicate requests
+                    lazyItem.setAttribute('data-loaded', 'loading');
+
+                    // Check for WebP support
+                    const supportsWebP = checkWebPSupport();
+
+                    // Try WebP first if supported, fallback to original
+                    const imageSrc = supportsWebP ? convertToWebP(src) : src;
+
                     // Preload the image
                     const img = new Image();
+                    img.decoding = 'async'; // Better performance
                     img.onload = function () {
                         // Set the background image
-                        lazyItem.style.backgroundImage = `url('${src}')`;
+                        lazyItem.style.backgroundImage = `url('${imageSrc}')`;
                         lazyItem.classList.remove('lazy-loading');
                         lazyItem.classList.add('loaded');
                         lazyItem.setAttribute('data-loaded', 'true');
@@ -732,7 +888,57 @@
                             placeholder.remove();
                         }
                     };
-                    img.src = src;
+                    img.onerror = function () {
+                        // If WebP fails, try original format
+                        if (supportsWebP && imageSrc !== src) {
+                            const fallbackImg = new Image();
+                            fallbackImg.decoding = 'async';
+                            fallbackImg.onload = function () {
+                                lazyItem.style.backgroundImage = `url('${src}')`;
+                                lazyItem.classList.remove('lazy-loading');
+                                lazyItem.classList.add('loaded');
+                                lazyItem.setAttribute('data-loaded', 'true');
+
+                                const placeholder = lazyItem.querySelector('.image-placeholder');
+                                if (placeholder) {
+                                    placeholder.remove();
+                                }
+                            };
+                            fallbackImg.onerror = function () {
+                                handleImageError(lazyItem);
+                            };
+                            fallbackImg.src = src;
+                        } else {
+                            handleImageError(lazyItem);
+                        }
+                    };
+                    img.src = imageSrc;
+                }
+            }
+
+            // Check WebP support
+            function checkWebPSupport() {
+                const canvas = document.createElement('canvas');
+                canvas.width = 1;
+                canvas.height = 1;
+                return canvas.toDataURL('image/webp').indexOf('image/webp') === 5;
+            }
+
+            // Convert image path to WebP equivalent
+            function convertToWebP(src) {
+                // Replace file extension with .webp
+                return src.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+            }
+
+            // Handle image loading errors
+            function handleImageError(lazyItem) {
+                lazyItem.classList.remove('lazy-loading');
+                lazyItem.classList.add('error');
+                lazyItem.setAttribute('data-loaded', 'error');
+
+                const placeholder = lazyItem.querySelector('.image-placeholder');
+                if (placeholder) {
+                    placeholder.innerHTML = '<div class="error-icon">⚠️</div><span class="error-text">Failed to load</span>';
                 }
             }
 
