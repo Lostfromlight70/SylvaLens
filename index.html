@@ -264,7 +264,7 @@
             <h2>Get In Touch</h2>
             <p>Ready to capture your special moments? Let's discuss your photography needs and create something
                 beautiful together.</p>
-            <form id="contact-form" action="https://formspree.io/f/xlgpyzbe" method="POST" class="contact-form">
+            <form id="contact-form" action="https://formspree.io/f/mwvayoaa" method="POST" class="contact-form">
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" placeholder="Your Name" required>
                 <label for="email">Email</label>
@@ -319,6 +319,59 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Hero Carousel - Rotate through reference images
+            const heroSection = document.querySelector('.hero');
+            const carouselImages = [
+                'Reference/Home_Image.PNG',
+                'Reference/IMG_5491.JPG',
+                'Reference/IMG_8240.JPG',
+                'Reference/IMG_9853.JPG'
+            ];
+            // Background positions to keep faces visible
+            const backgroundPositions = [
+                'center center',     // Home_Image - center
+                'center 30%',        // IMG_5491 - center 30%
+                'center 30%',        // IMG_8240 - center 30%
+                'center 30%'         // IMG_9853 - center 30%
+            ];
+            let currentImageIndex = -1;
+
+            // Preload all carousel images to prevent glitching
+            carouselImages.forEach(imagePath => {
+                const img = new Image();
+                img.src = imagePath;
+            });
+
+            function getRandomDuration() {
+                return Math.random() * 2000 + 4000; // 4-6 seconds in milliseconds
+            }
+
+            function rotateHeroImage() {
+                currentImageIndex = (currentImageIndex + 1) % carouselImages.length;
+                const imageUrl = carouselImages[currentImageIndex];
+                const bgPosition = backgroundPositions[currentImageIndex];
+
+                // Temporarily disable all transitions
+                const originalTransition = heroSection.style.transition;
+                heroSection.style.transition = 'none';
+
+                // Set both properties immediately without animation
+                heroSection.style.backgroundPosition = bgPosition;
+                heroSection.style.backgroundImage = `url('${imageUrl}')`;
+
+                // Force reflow to apply changes immediately
+                void heroSection.offsetHeight;
+
+                // Re-enable transition after properties are set
+                heroSection.style.transition = 'background-image 1s ease-in-out';
+
+                // Schedule next rotation with random duration
+                setTimeout(rotateHeroImage, getRandomDuration());
+            }
+
+            // Start carousel with initial delay
+            setTimeout(rotateHeroImage, getRandomDuration());
+
             const form = document.getElementById('contact-form');
             if (form) {
                 const phoneInput = document.getElementById('phone');

@@ -134,10 +134,11 @@ img {
     justify-content: center;
     text-align: center;
     overflow: hidden;
-    background-image: url('Reference/Home Image.PNG');
+    background-image: url('Reference/Home_Image.PNG');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    transition: background-image 1s ease-in-out;
 }
 
 .hero::before {
