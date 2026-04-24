@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#ffd700">
+    <title>Ceremonies Gallery - Sylva Lens</title>
+
+    <!-- DNS prefetch for image domains -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Sylva Lens</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#portfolio">Portfolio</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Gallery Header -->
+    <section class="gallery-header">
+        <div class="container">
+            <h1>Ceremonies Gallery</h1>
+            <p>Special events and milestone celebrations</p>
+            <a href="index.html#portfolio" class="back-btn">← Back to Portfolio</a>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery">
+        <div class="container">
+            <div class="portfolio-grid">
+                <div class="portfolio-item lazy-loading" data-src="Ceremonies/IMG_0448.jpeg" data-loaded="false">
+                    <div class="image-placeholder">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+                <div class="portfolio-item lazy-loading" data-src="Ceremonies/IMG_0499.jpeg" data-loaded="false">
+                    <div class="image-placeholder">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+                <div class="portfolio-item lazy-loading" data-src="Ceremonies/IMG_0500.jpeg" data-loaded="false">
+                    <div class="image-placeholder">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+                <div class="portfolio-item lazy-loading" data-src="Ceremonies/IMG_0549 copy.jpg" data-loaded="false">
+                    <div class="image-placeholder">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+                <div class="portfolio-item lazy-loading" data-src="Ceremonies/IMG_0556 copy.jpg" data-loaded="false">
+                    <div class="image-placeholder">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+                <div class="portfolio-item lazy-loading" data-src="Ceremonies/IMG_0585 copy.jpg" data-loaded="false">
+                    <div class="image-placeholder">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+                <div class="portfolio-item lazy-loading" data-src="Ceremonies/IMG_0586 copy.jpg" data-loaded="false">
+                    <div class="image-placeholder">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+                <div class="portfolio-item lazy-loading" data-src="Ceremonies/IMG_0589 copy.jpg" data-loaded="false">
+                    <div class="image-placeholder">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+                <div class="portfolio-item lazy-loading" data-src="Ceremonies/IMG_0592 copy.jpg" data-loaded="false">
+                    <div class="image-placeholder">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+                <div class="portfolio-item lazy-loading" data-src="Ceremonies/IMG_5971.jpg" data-loaded="false">
+                    <div class="image-placeholder">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+                <div class="portfolio-item lazy-loading" data-src="Ceremonies/IMG_5972.jpg" data-loaded="false">
+                    <div class="image-placeholder">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+                <div class="portfolio-item lazy-loading" data-src="Ceremonies/IMG_5975.jpg" data-loaded="false">
+                    <div class="image-placeholder">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>                <div class="upload-slot" data-category="ceremonies" style="display: none;">
+                    <div class="upload-area">
+                        <div class="upload-icon">📤</div>
+                        <span class="upload-text">Upload photo</span>
+                    </div>
+                    <input type="file" class="portfolio-upload" accept="image/*" style="display:none;">
+                </div>            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Sylva Lens. All rights reserved.</p>
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#portfolio">Portfolio</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- Image Modal -->
+    <div id="image-modal" class="image-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <img id="modal-image" class="modal-image" src="" alt="Gallery Image">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const ADMIN_PARAM = 'edit';
+            const currentCategory = 'ceremonies';
+            const uploadSlots = document.querySelectorAll('.upload-slot');
+            const modal = document.getElementById('image-modal');
+            const modalImage = document.getElementById('modal-image');
+            const modalClose = document.getElementById('modal-close');
+            const portfolioItems = document.querySelectorAll('.portfolio-item:not(.upload-slot)');
+
+            function isEditingEnabled() {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(ADMIN_PARAM) === 'true';
+            }
+
+            function showUploadSlots() {
+                uploadSlots.forEach(slot => {
+                    slot.style.display = 'flex';
+                });
+            }
+
+            function hideUploadSlots() {
+                uploadSlots.forEach(slot => {
+                    slot.style.display = 'none';
+                });
+            }
+
+            const isEditMode = isEditingEnabled();
+            if (isEditMode) {
+                showUploadSlots();
+            } else {
+                hideUploadSlots();
+            }
+
+            function addRemoveButton(item, category, imageUrl) {
+                if (!isEditMode || !category || !imageUrl) return;
+                const removeBtn = document.createElement('button');
+                removeBtn.type = 'button';
+                removeBtn.className = 'remove-image-btn';
+                removeBtn.textContent = 'Remove';
+                item.appendChild(removeBtn);
+                removeBtn.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    removeImage(item, category, imageUrl);
+                });
+            }
+
+            function removeImage(item, category, imageUrl) {
+                item.remove();
+                const storedImages = JSON.parse(localStorage.getItem(`portfolio_${category}`) || '[]');
+                const filtered = storedImages.filter(img => img.url !== imageUrl);
+                if (filtered.length) {
+                    localStorage.setItem(`portfolio_${category}`, JSON.stringify(filtered));
+                } else {
+                    localStorage.removeItem(`portfolio_${category}`);
+                }
+            }
+
+            function handleUploadClick(uploadSlot) {
+                if (uploadSlot.classList.contains('processing')) return;
+                const fileInput = uploadSlot.querySelector('.portfolio-upload');
+                if (fileInput) {
+                    fileInput.click();
+                }
+            }
+
+            function handleFileSelect(event, category) {
+                const file = event.target.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    const uploadSlot = event.target.closest('.upload-slot');
+                    const originalContent = uploadSlot.innerHTML;
+                    uploadSlot.classList.add('processing');
+                    uploadSlot.innerHTML = '<div class="upload-area"><div class="upload-icon">⏳</div><span class="upload-text">Processing...</span></div>';
+                    setTimeout(() => {
+                        processImageFile(file, category, uploadSlot, originalContent);
+                    }, 10);
+                }
+            }
+
+            function processImageFile(file, category, uploadSlot, originalContent) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const imageUrl = e.target.result;
+                    const img = new Image();
+                    img.onload = function () {
+                        try {
+                            const targetWidth = 1200;
+                            const targetHeight = 1200;
+                            const canvas = document.createElement('canvas');
+                            const ctx = canvas.getContext('2d');
+                            const scale = Math.min(targetWidth / img.width, targetHeight / img.height, 1);
+                            const scaledWidth = img.width * scale;
+                            const scaledHeight = img.height * scale;
+                            canvas.width = scaledWidth;
+                            canvas.height = scaledHeight;
+                            ctx.drawImage(img, 0, 0, scaledWidth, scaledHeight);
+                            const resizedImageUrl = canvas.toDataURL('image/jpeg', 0.85);
+                            const portfolioGrid = uploadSlot.closest('.portfolio-grid');
+                            const newItem = document.createElement('div');
+                            newItem.className = 'portfolio-item loaded';
+                            newItem.style.backgroundImage = `url('${resizedImageUrl}')`;
+                            portfolioGrid.insertBefore(newItem, uploadSlot);
+                            newItem.addEventListener('click', function () {
+                                handlePortfolioClick(this);
+                            });
+                            addRemoveButton(newItem, category, resizedImageUrl);
+                            const storedImages = JSON.parse(localStorage.getItem(`portfolio_${category}`) || '[]');
+                            storedImages.push({
+                                url: resizedImageUrl,
+                                name: file.name,
+                                timestamp: Date.now(),
+                                originalWidth: img.width,
+                                originalHeight: img.height
+                            });
+                            localStorage.setItem(`portfolio_${category}`, JSON.stringify(storedImages));
+                            uploadSlot.innerHTML = originalContent;
+                            uploadSlot.classList.remove('processing');
+                            const fileInput = uploadSlot.querySelector('.portfolio-upload');
+                            if (fileInput) {
+                                fileInput.addEventListener('change', function (e) {
+                                    handleFileSelect(e, category);
+                                });
+                            }
+                        } catch (error) {
+                            console.error('Error processing image:', error);
+                            uploadSlot.innerHTML = originalContent;
+                            uploadSlot.classList.remove('processing');
+                            alert('Error processing image. Please try again.');
+                        }
+                    };
+                    img.onerror = function () {
+                        uploadSlot.innerHTML = originalContent;
+                        uploadSlot.classList.remove('processing');
+                        alert('Error loading image. Please try a different file.');
+                    };
+                    img.src = imageUrl;
+                };
+                reader.onerror = function () {
+                    uploadSlot.innerHTML = originalContent;
+                    uploadSlot.classList.remove('processing');
+                    alert('Error reading file. Please try again.');
+                };
+                reader.readAsDataURL(file);
+            }
+
+            function loadStoredImages(category) {
+                const storedImages = JSON.parse(localStorage.getItem(`portfolio_${category}`) || '[]');
+                const portfolioGrid = document.querySelector('.portfolio-grid');
+                const uploadSlot = portfolioGrid.querySelector('.upload-slot');
+                storedImages.forEach(imageData => {
+                    const newItem = document.createElement('div');
+                    newItem.className = 'portfolio-item lazy-loading';
+                    newItem.setAttribute('data-src', imageData.url);
+                    newItem.setAttribute('data-loaded', 'false');
+                    newItem.innerHTML = '<div class="image-placeholder"><div class="loading-spinner"></div></div>';
+                    portfolioGrid.insertBefore(newItem, uploadSlot);
+                    newItem.addEventListener('click', function () {
+                        handlePortfolioClick(this);
+                    });
+                    addRemoveButton(newItem, category, imageData.url);
+                });
+            }
+
+            function initializeLazyLoading() {
+                const lazyImages = document.querySelectorAll('.portfolio-item.lazy-loading');
+                preloadAboveFoldImages();
+                if ('IntersectionObserver' in window) {
+                    const imageObserver = new IntersectionObserver((entries, observer) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                const lazyItem = entry.target;
+                                loadLazyImage(lazyItem);
+                                observer.unobserve(lazyItem);
+                            }
+                        });
+                    }, {
+                        rootMargin: '100px 0px',
+                        threshold: 0.01
+                    });
+                    lazyImages.forEach(img => {
+                        imageObserver.observe(img);
+                    });
+                } else {
+                    lazyImages.forEach(img => {
+                        loadLazyImage(img);
+                    });
+                }
+            }
+
+            function preloadAboveFoldImages() {
+                const aboveFoldImages = document.querySelectorAll('.portfolio-item.lazy-loading:nth-child(-n+9)');
+                const highPriorityImages = Array.from(aboveFoldImages).slice(0, 3);
+                highPriorityImages.forEach(item => {
+                    loadLazyImage(item);
+                });
+                setTimeout(() => {
+                    const mediumPriorityImages = Array.from(aboveFoldImages).slice(3, 9);
+                    mediumPriorityImages.forEach(item => {
+                        loadLazyImage(item);
+                    });
+                }, 100);
+            }
+
+            function loadLazyImage(lazyItem) {
+                const src = lazyItem.getAttribute('data-src');
+                if (src && lazyItem.getAttribute('data-loaded') === 'false') {
+                    lazyItem.setAttribute('data-loaded', 'loading');
+                    const supportsWebP = checkWebPSupport();
+                    const imageSrc = supportsWebP ? convertToWebP(src) : src;
+                    const img = new Image();
+                    img.decoding = 'async';
+                    img.onload = function () {
+                        lazyItem.style.backgroundImage = `url('${imageSrc}')`;
+                        lazyItem.classList.remove('lazy-loading');
+                        lazyItem.classList.add('loaded');
+                        lazyItem.setAttribute('data-loaded', 'true');
+                        const placeholder = lazyItem.querySelector('.image-placeholder');
+                        if (placeholder) {
+                            placeholder.remove();
+                        }
+                    };
+                    img.onerror = function () {
+                        if (supportsWebP && imageSrc !== src) {
+                            const fallbackImg = new Image();
+                            fallbackImg.decoding = 'async';
+                            fallbackImg.onload = function () {
+                                lazyItem.style.backgroundImage = `url('${src}')`;
+                                lazyItem.classList.remove('lazy-loading');
+                                lazyItem.classList.add('loaded');
+                                lazyItem.setAttribute('data-loaded', 'true');
+                                const placeholder = lazyItem.querySelector('.image-placeholder');
+                                if (placeholder) {
+                                    placeholder.remove();
+                                }
+                            };
+                            fallbackImg.onerror = function () {
+                                handleImageError(lazyItem);
+                            };
+                            fallbackImg.src = src;
+                        } else {
+                            handleImageError(lazyItem);
+                        }
+                    };
+                    img.src = imageSrc;
+                }
+            }
+
+            function checkWebPSupport() {
+                const canvas = document.createElement('canvas');
+                canvas.width = 1;
+                canvas.height = 1;
+                return canvas.toDataURL('image/webp').indexOf('image/webp') === 5;
+            }
+
+            function convertToWebP(src) {
+                return src.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+            }
+
+            function handleImageError(lazyItem) {
+                lazyItem.classList.remove('lazy-loading');
+                lazyItem.classList.add('error');
+                lazyItem.setAttribute('data-loaded', 'error');
+                const placeholder = lazyItem.querySelector('.image-placeholder');
+                if (placeholder) {
+                    placeholder.innerHTML = '<div class="error-icon">⚠️</div><span class="error-text">Failed to load</span>';
+                }
+            }
+
+            function handlePortfolioClick(item) {
+                const backgroundImage = item.style.backgroundImage;
+                if (backgroundImage && !item.classList.contains('upload-slot')) {
+                    const urlMatch = backgroundImage.match(/url\(["']?(.*?)["']?\)/);
+                    if (urlMatch && urlMatch[1]) {
+                        modalImage.src = urlMatch[1];
+                        modal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                }
+            }
+
+            portfolioItems.forEach(item => {
+                item.addEventListener('click', function () {
+                    handlePortfolioClick(this);
+                });
+            });
+
+            uploadSlots.forEach(slot => {
+                slot.addEventListener('click', function () {
+                    handleUploadClick(this);
+                });
+                const fileInput = slot.querySelector('.portfolio-upload');
+                if (fileInput) {
+                    fileInput.addEventListener('change', function (e) {
+                        handleFileSelect(e, currentCategory);
+                    });
+                }
+            });
+
+            modalClose.addEventListener('click', function () {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+
+            modal.addEventListener('click', function (e) {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && modal.classList.contains('active')) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            loadStoredImages(currentCategory);
+            setTimeout(initializeLazyLoading, 100);
+        });
+    </script>
+</body>
+
+</html>

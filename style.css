@@ -159,7 +159,7 @@ img {
     width: 100%;
     height: 100%;
     background: radial-gradient(circle at top right, rgba(74, 42, 31, 0.15), transparent 40%),
-                radial-gradient(circle at bottom left, rgba(90, 51, 38, 0.12), transparent 40%);
+        radial-gradient(circle at bottom left, rgba(90, 51, 38, 0.12), transparent 40%);
     z-index: 1;
 }
 
@@ -253,19 +253,19 @@ img {
 
 .services {
     background: rgba(74, 42, 31, 0.04);
-    padding: 4.5rem 0;
+    padding: 6rem 0;
 }
 
 .service-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1.5rem;
+    gap: 2.5rem;
 }
 
 .service-card {
     position: relative;
     overflow: hidden;
-    padding: 2rem;
+    padding: 2.5rem;
     border-radius: 24px;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -310,7 +310,7 @@ img {
 }
 
 .testimonials {
-    padding: 5rem 0;
+    padding: 6.5rem 0;
 }
 
 .testimonials h2 {
@@ -322,7 +322,7 @@ img {
 .testimonial-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.4rem;
+    gap: 2.5rem;
 }
 
 .testimonial-card {
@@ -365,23 +365,23 @@ img {
     left: 50%;
     transform: translateX(-50%);
     font-weight: 700;
-    color: var(--accent-emerald);
+    color: var(--accent-gold);
 }
 
 .about {
     background: rgba(74, 42, 31, 0.04);
-    padding: 5rem 0;
+    padding: 6.5rem 0;
 }
 
 .about-content {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
-    gap: 3rem;
+    gap: 4rem;
     align-items: center;
 }
 
 .about-text p {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     color: var(--text-color);
     font-size: 1.02rem;
     line-height: 1.85;
@@ -391,7 +391,7 @@ img {
     background: rgba(74, 42, 31, 0.08);
     border: 1px solid rgba(74, 42, 31, 0.35);
     border-radius: 24px;
-    padding: 2.5rem;
+    padding: 3.5rem;
     box-shadow: 0 24px 50px rgba(74, 42, 31, 0.1);
 }
 
@@ -403,14 +403,14 @@ img {
 }
 
 .portfolio {
-    padding: 5rem 0;
+    padding: 6.5rem 0;
 }
 
 /* Performance Optimizations */
 .portfolio-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.5rem;
+    gap: 2.5rem;
     contain: layout style paint;
     /* CSS containment for better performance */
 }
@@ -491,6 +491,7 @@ img {
     0% {
         transform: translateX(-100%);
     }
+
     100% {
         transform: translateX(100%);
     }
@@ -582,6 +583,7 @@ img {
 
 /* Upload Slot Styling */
 .upload-slot {
+    display: none;
     border: 2px dashed rgba(200, 169, 139, 0.5) !important;
     background: rgba(255, 255, 255, 0.03) !important;
     cursor: pointer;
@@ -618,8 +620,28 @@ img {
     letter-spacing: 0.05rem;
 }
 
+.remove-image-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 3;
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+    border: none;
+    background: rgba(10, 5, 8, 0.8);
+    color: var(--text-color);
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background var(--transition), color var(--transition);
+}
+
+.remove-image-btn:hover {
+    background: rgba(200, 169, 139, 0.95);
+    color: #1A0F0B;
+}
+
 .category-section {
-    margin-bottom: 4.5rem;
+    margin-bottom: 7rem;
 }
 
 .category-section:last-child {
@@ -629,31 +651,139 @@ img {
 .category-title {
     font-size: 2.4rem;
     text-align: center;
-    margin-bottom: 0.75rem;
+    margin-bottom: 1.5rem;
     text-transform: uppercase;
     letter-spacing: 0.15rem;
-    color: var(--accent-emerald);
+    color: var(--accent-soft);
 }
 
 .category-description {
     text-align: center;
     color: var(--muted-color);
     max-width: 760px;
-    margin: 0 auto 2rem;
+    margin: 0 auto 3rem;
     font-size: 1.05rem;
     line-height: 1.85;
 }
 
+/* Portfolio Showcase (Single Image per Category) */
+.portfolio-showcase {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.portfolio-showcase .portfolio-grid {
+    display: grid;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.portfolio-showcase .portfolio-item {
+    width: 100%;
+}
+
+.category-actions {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.gallery-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    background: linear-gradient(135deg, var(--accent-gold), var(--accent-emerald));
+    color: var(--bg-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    border-radius: 25px;
+    transition: all var(--transition);
+    box-shadow: 0 8px 20px rgba(74, 42, 31, 0.3);
+    border: none;
+    cursor: pointer;
+}
+
+.gallery-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(74, 42, 31, 0.4);
+    background: linear-gradient(135deg, var(--accent-emerald), var(--accent-gold));
+}
+
+.gallery-btn::before {
+    content: '📸';
+    font-size: 1.1rem;
+}
+
+.gallery {
+    padding: 3rem 0;
+}
+
+/* Gallery Header */
+.gallery-header {
+    padding: 4.5rem 0;
+    text-align: center;
+    background: rgba(74, 42, 31, 0.04);
+}
+
+.gallery-header h1 {
+    font-size: 2.8rem;
+    color: var(--accent-gold);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+}
+
+.gallery-header p {
+    color: var(--muted-color);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1.2rem;
+    background: rgba(200, 169, 139, 0.1);
+    color: var(--accent-soft);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    border-radius: 20px;
+    transition: all var(--transition);
+    border: 1px solid rgba(200, 169, 139, 0.3);
+}
+
+.back-btn:hover {
+    background: rgba(200, 169, 139, 0.2);
+    color: var(--text-color);
+    transform: translateX(-2px);
+}
+
+.back-btn::before {
+    content: '←';
+    font-size: 1rem;
+}
+
 .contact {
     background: rgba(74, 42, 31, 0.04);
-    padding: 5rem 0;
+    padding: 6.5rem 0;
     text-align: center;
     border-top: 1px solid rgba(74, 42, 31, 0.2);
 }
 
 .contact p {
     max-width: 720px;
-    margin: 0 auto 1.75rem;
+    margin: 0 auto 3rem;
     color: var(--text-color);
     font-size: 1.05rem;
     line-height: 1.9;
@@ -663,7 +793,7 @@ img {
     max-width: 720px;
     margin: 0 auto;
     display: grid;
-    gap: 1rem;
+    gap: 1.5rem;
     padding: 0 1rem;
 }
 
@@ -673,7 +803,7 @@ img {
     font-size: 0.85rem;
     letter-spacing: 0.12rem;
     margin-bottom: 0.4rem;
-    color: var(--accent-emerald);
+    color: var(--accent-gold);
     font-weight: 700;
 }
 
@@ -687,7 +817,6 @@ img {
     background: rgba(74, 42, 31, 0.05);
     color: var(--text-color);
     box-shadow: inset 0 1px 0 rgba(74, 42, 31, 0.08);
-    transition: border-color var(--transition), transform var(--transition);
 }
 
 .contact-form input:focus,
@@ -695,8 +824,51 @@ img {
 .contact-form textarea:focus {
     outline: none;
     border-color: rgba(74, 42, 31, 0.8);
-    transform: translateY(-1px);
     background: rgba(74, 42, 31, 0.1);
+}
+
+/* Styled Select Dropdown */
+.contact-form select {
+    appearance: none;
+    background: rgba(74, 42, 31, 0.05);
+    border-radius: 18px;
+    border: 1px solid rgba(74, 42, 31, 0.25);
+    color: var(--text-color);
+    padding: 1rem 1.1rem;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+/* Style select options */
+.contact-form select option {
+    background: linear-gradient(135deg, #2B1711 0%, #3A2118 100%);
+    color: var(--text-color);
+    padding: 1.2rem 1rem;
+    border-radius: 12px;
+    margin: 0.8rem 0;
+    font-weight: 600;
+    border: 1px solid rgba(200, 169, 139, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    letter-spacing: 0.05rem;
+}
+
+.contact-form select option:first-child {
+    color: var(--muted-color);
+    font-weight: 500;
+}
+
+.contact-form select option:hover {
+    background: linear-gradient(135deg, var(--accent-gold), var(--accent-emerald));
+    color: #0a0508;
+    border-color: var(--accent-gold);
+}
+
+.contact-form select option:checked {
+    background: linear-gradient(135deg, var(--accent-gold), var(--accent-emerald));
+    color: #0a0508;
+    font-weight: 700;
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 0 3px rgba(200, 169, 139, 0.3), 0 4px 12px rgba(200, 169, 139, 0.25);
 }
 
 .contact-form textarea {
