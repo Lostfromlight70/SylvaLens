@@ -236,9 +236,13 @@ img {
     font-weight: 800;
 }
 
+.primary-btn:hover {
+    box-shadow: none;
+}
+
 .secondary-btn {
-    color: var(--accent-emerald);
-    border: 2px solid var(--accent-emerald);
+    color: #C8A98B;
+    border: 2px solid #C8A98B;
     background: rgba(74, 42, 31, 0.1);
 }
 
@@ -248,8 +252,8 @@ img {
 
 .secondary-btn:hover {
     background: rgba(74, 42, 31, 0.25);
-    border-color: var(--accent-soft);
-    color: var(--accent-soft);
+    border-color: #D4B896;
+    color: #D4B896;
 }
 
 .services {
@@ -432,9 +436,6 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-    will-change: transform, box-shadow, border-color;
-    contain: layout style paint;
-    /* Additional containment */
 }
 
 .portfolio-item:hover {
@@ -547,7 +548,7 @@ img {
     color: var(--muted-color);
     opacity: 0.7;
 }
-}
+
 
 .portfolio-item.loaded {
     animation: fadeIn 0.3s ease-in-out;
@@ -819,29 +820,40 @@ img {
     width: 100%;
     padding: 1rem 1.1rem;
     border-radius: 18px;
-    border: 1px solid rgba(74, 42, 31, 0.25);
-    background: rgba(74, 42, 31, 0.05);
+    border: 2px solid rgba(200, 169, 139, 0.4);
+    background: rgba(74, 42, 31, 0.15);
     color: var(--text-color);
-    box-shadow: inset 0 1px 0 rgba(74, 42, 31, 0.08);
+    box-shadow: inset 0 1px 0 rgba(74, 42, 31, 0.08), 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.contact-form input:hover,
+.contact-form textarea:hover {
+    border-color: var(--accent-gold);
+    background: rgba(74, 42, 31, 0.2);
+    transform: translateY(-2px);
+    box-shadow: inset 0 1px 0 rgba(74, 42, 31, 0.08), 0 4px 12px rgba(200, 169, 139, 0.15);
 }
 
 .contact-form input:focus,
 .contact-form select:focus,
 .contact-form textarea:focus {
     outline: none;
-    border-color: rgba(74, 42, 31, 0.8);
-    background: rgba(74, 42, 31, 0.1);
+    border-color: var(--accent-gold);
+    background: rgba(74, 42, 31, 0.25);
+    box-shadow: inset 0 1px 0 rgba(74, 42, 31, 0.08), 0 0 0 3px rgba(200, 169, 139, 0.2);
+    transform: translateY(-2px);
 }
 
 /* Styled Select Dropdown */
 .contact-form select {
     appearance: none;
-    background: linear-gradient(135deg, rgba(74, 42, 31, 0.08), rgba(74, 42, 31, 0.05)) url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C8A98B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") no-repeat;
-    background-position: right 1.1rem center;
-    background-size: 1.2em;
+    background: linear-gradient(135deg, rgba(74, 42, 31, 0.2), rgba(74, 42, 31, 0.15)) url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23D4B896' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") no-repeat;
+    background-position: right 1rem center;
+    background-size: 1.4em;
     background-repeat: no-repeat;
     border-radius: 18px;
-    border: 1.5px solid rgba(74, 42, 31, 0.3);
+    border: 2px solid rgba(200, 169, 139, 0.5);
     color: var(--text-color);
     padding: 1rem 2.8rem 1rem 1.1rem;
     cursor: pointer;
@@ -851,11 +863,12 @@ img {
 }
 
 .contact-form select:hover {
-    border-color: rgba(200, 169, 139, 0.5);
-    background: linear-gradient(135deg, rgba(200, 169, 139, 0.12), rgba(200, 169, 139, 0.08)) url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23D4B896' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") no-repeat;
+    border-color: var(--accent-gold);
+    background: linear-gradient(135deg, rgba(200, 169, 139, 0.2), rgba(200, 169, 139, 0.15)) url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23D4B896' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") no-repeat;
     background-position: right 1.1rem center;
     background-size: 1.2em;
-    box-shadow: 0 6px 16px rgba(200, 169, 139, 0.15);
+    box-shadow: 0 6px 16px rgba(200, 169, 139, 0.2);
+    transform: translateY(-2px);
 }
 
 /* Style select options */
