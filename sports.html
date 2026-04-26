@@ -226,7 +226,7 @@
                             canvas.width = scaledWidth;
                             canvas.height = scaledHeight;
                             ctx.drawImage(img, 0, 0, scaledWidth, scaledHeight);
-                            const resizedImageUrl = canvas.toDataURL('image/jpeg', 0.85);
+                            const resizedImageUrl = canvas.toDataURL('image/jpeg', 0.40);
                             const portfolioGrid = uploadSlot.closest('.portfolio-grid');
                             const newItem = document.createElement('div');
                             newItem.className = 'portfolio-item loaded';
@@ -402,7 +402,7 @@
                     // Add click handler for reload button
                     const reloadBtn = placeholder.querySelector('.reload-btn');
                     if (reloadBtn) {
-                        reloadBtn.addEventListener('click', function(e) {
+                        reloadBtn.addEventListener('click', function (e) {
                             e.stopPropagation(); // Prevent triggering portfolio click
                             retryLoadImage(lazyItem);
                         });
@@ -416,10 +416,10 @@
                 lazyItem.classList.add('lazy-loading');
                 lazyItem.setAttribute('data-loaded', 'false');
                 lazyItem.style.backgroundImage = '';
-                
+
                 // Recreate the placeholder
                 lazyItem.innerHTML = '<div class="image-placeholder"><div class="loading-spinner"></div></div>';
-                
+
                 // Retry loading
                 loadLazyImage(lazyItem);
             }
