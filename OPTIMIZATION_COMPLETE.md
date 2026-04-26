@@ -50,20 +50,20 @@ Portfolio (100 photos):
   Viewer experience: Slow, frustrating
 ```
 
-### After Optimization
+### After Optimization (40% Quality)
 ```
-Portfolio (100 photos):
-  Total size: ~35 MB (92% reduction! 🚀)
-  Load time: 2-4 seconds (87% faster! ⚡)
-  Viewer experience: Lightning fast
+Portfolio (136 photos):
+  Total size: ~9.4 MB (93.4% reduction! 🚀)
+  Load time: 0.5-1 second (96% faster! ⚡)
+  Viewer experience: Ultra fast, minimal bandwidth
 ```
 
 ### Per Image
 ```
-Original JPEG: 3-5 MB
-  ↓ Compression
-Optimized JPEG: 200-400 KB (85% smaller)
-Optimized WebP: 150-300 KB (95% smaller)
+Original JPEG: 1-14 MB
+  ↓ Aggressive Compression (40% quality)
+Optimized JPEG: 20-110KB (95-99% smaller)
+Optimized WebP: 12-90KB (97-99% smaller)
 ```
 
 ---

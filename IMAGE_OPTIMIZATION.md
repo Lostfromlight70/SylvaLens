@@ -12,7 +12,7 @@ Your Sylva Lens photography portfolio now has **advanced image optimization** an
 - **Preloading**: First 3 images load immediately, next 6 with 100ms delay
 
 ### 2. **Image Compression** ✅
-- **JPEG optimization**: 85% quality maintains visual fidelity while reducing file size
+- **JPEG optimization**: 40% quality for maximum compression while maintaining acceptable visual quality
 - **WebP support**: Modern browsers get smaller WebP files with automatic JPEG fallback
 - **Automatic resizing**: Large images scaled to max 1200x1200px
 - **Batch processing**: Script compresses all portfolio images
@@ -43,9 +43,9 @@ This will:
 - ✓ Create a compression log for tracking
 
 ### Expected Results
-- **JPEG files**: 40-60% size reduction
-- **WebP files**: 50-70% size reduction vs original
-- **Page load time**: 50-70% faster with lazy loading
+- **JPEG files**: 70-85% size reduction (40% quality)
+- **WebP files**: 80-90% size reduction vs original
+- **Page load time**: 70-85% faster with lazy loading
 
 ## Technical Details
 

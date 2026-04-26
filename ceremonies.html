@@ -409,11 +409,43 @@
                 lazyItem.setAttribute('data-loaded', 'error');
                 const placeholder = lazyItem.querySelector('.image-placeholder');
                 if (placeholder) {
-                    placeholder.innerHTML = '<div class="error-icon">⚠️</div><span class="error-text">Failed to load</span>';
+                    placeholder.innerHTML = `
+                        <div class="error-icon">⚠️</div>
+                        <span class="error-text">Failed to load</span>
+                        <button class="reload-btn" title="Retry loading image">🔄</button>
+                    `;
+                    // Add click handler for reload button
+                    const reloadBtn = placeholder.querySelector('.reload-btn');
+                    if (reloadBtn) {
+                        reloadBtn.addEventListener('click', function(e) {
+                            e.stopPropagation(); // Prevent triggering portfolio click
+                            retryLoadImage(lazyItem);
+                        });
+                    }
                 }
             }
 
+            function retryLoadImage(lazyItem) {
+                // Reset the item to lazy-loading state
+                lazyItem.classList.remove('error');
+                lazyItem.classList.add('lazy-loading');
+                lazyItem.setAttribute('data-loaded', 'false');
+                lazyItem.style.backgroundImage = '';
+                
+                // Recreate the placeholder
+                lazyItem.innerHTML = '<div class="image-placeholder"><div class="loading-spinner"></div></div>';
+                
+                // Retry loading
+                loadLazyImage(lazyItem);
+            }
+
             function handlePortfolioClick(item) {
+                // If item is in error state, retry loading instead of opening modal
+                if (item.classList.contains('error')) {
+                    retryLoadImage(item);
+                    return;
+                }
+
                 const backgroundImage = item.style.backgroundImage;
                 if (backgroundImage && !item.classList.contains('upload-slot')) {
                     const urlMatch = backgroundImage.match(/url\(["']?(.*?)["']?\)/);

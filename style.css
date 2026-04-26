@@ -116,11 +116,14 @@ img {
 }
 
 .nav-menu a:hover,
-.nav-menu a:focus {
+.nav-menu a:focus,
+.nav-menu a:active {
     color: var(--accent-soft);
 }
 
-.nav-menu a:hover::after {
+.nav-menu a:hover::after,
+.nav-menu a:focus::after,
+.nav-menu a:active::after {
     width: 100%;
 }
 
@@ -246,11 +249,13 @@ img {
     background: rgba(74, 42, 31, 0.1);
 }
 
-.btn:hover {
+.btn:hover,
+.btn:active {
     transform: translateY(-3px);
 }
 
-.secondary-btn:hover {
+.secondary-btn:hover,
+.secondary-btn:active {
     background: rgba(74, 42, 31, 0.25);
     border-color: #D4B896;
     color: #D4B896;
@@ -290,7 +295,8 @@ img {
     border-radius: 50%;
 }
 
-.service-card:hover {
+.service-card:hover,
+.service-card:active {
     transform: translateY(-8px);
     border-color: rgba(74, 42, 31, 0.7);
     box-shadow: 0 24px 60px rgba(74, 42, 31, 0.15);
@@ -341,7 +347,8 @@ img {
     transition: transform var(--transition);
 }
 
-.testimonial-card:hover {
+.testimonial-card:hover,
+.testimonial-card:active {
     transform: translateY(-6px);
 }
 
@@ -439,7 +446,8 @@ img {
     justify-content: center;
 }
 
-.portfolio-item:hover {
+.portfolio-item:hover,
+.portfolio-item:active {
     transform: translateY(-8px);
     box-shadow: 0 24px 65px rgba(74, 42, 31, 0.35);
     border-color: rgba(200, 169, 139, 0.5);
@@ -464,7 +472,8 @@ img {
     will-change: opacity;
 }
 
-.portfolio-item:hover::after {
+.portfolio-item:hover::after,
+.portfolio-item:active::after {
     opacity: 1;
 }
 
@@ -548,6 +557,26 @@ img {
     font-size: 0.9rem;
     color: var(--muted-color);
     opacity: 0.7;
+}
+
+.reload-btn {
+    background: none;
+    border: none;
+    color: var(--accent-gold);
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: all var(--transition);
+    opacity: 0.8;
+}
+
+.reload-btn:hover,
+.reload-btn:active {
+    opacity: 1;
+    transform: scale(1.1);
+    background: rgba(200, 169, 139, 0.1);
 }
 
 
@@ -1176,7 +1205,8 @@ section h2 {
     transition: background-color 0.3s ease;
 }
 
-.modal-close:hover {
+.modal-close:hover,
+.modal-close:active {
     background: rgba(200, 169, 139, 0.9);
     color: #1A0F0B;
 }

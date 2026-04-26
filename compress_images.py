@@ -17,9 +17,9 @@ CATEGORIES = ['Weddings', 'Portraits', 'Sports',
               'Ceremonies', 'Pre weddings', 'Creative']
 MAX_WIDTH = 1200
 MAX_HEIGHT = 1200
-JPEG_QUALITY = 85
-PNG_QUALITY = 85
-WEBP_QUALITY = 85
+JPEG_QUALITY = 40
+PNG_QUALITY = 40
+WEBP_QUALITY = 40
 
 # Log file
 LOG_FILE = 'compression_log.json'
