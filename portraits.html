@@ -18,6 +18,10 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-storage-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="firebase-upload.js"></script>
 </head>
 
 <body>
@@ -236,7 +240,7 @@
                 hideUploadSlots();
             }
 
-            function addRemoveButton(item, category, imageUrl) {
+            function addRemoveButton(item, category, imageUrl, storagePath) {
                 if (!isEditMode || !category || !imageUrl) return;
                 const removeBtn = document.createElement('button');
                 removeBtn.type = 'button';
@@ -245,14 +249,17 @@
                 item.appendChild(removeBtn);
                 removeBtn.addEventListener('click', function (e) {
                     e.stopPropagation();
-                    removeImage(item, category, imageUrl);
+                    removeImage(item, category, imageUrl, storagePath || item.getAttribute('data-path'));
                 });
             }
 
-            function removeImage(item, category, imageUrl) {
+            async function removeImage(item, category, imageUrl, storagePath) {
+                if (storagePath && typeof deleteFirebaseImage === 'function') {
+                    await deleteFirebaseImage(storagePath);
+                }
                 item.remove();
                 const storedImages = JSON.parse(localStorage.getItem(`portfolio_${category}`) || '[]');
-                const filtered = storedImages.filter(img => img.url !== imageUrl);
+                const filtered = storedImages.filter(img => img.url !== imageUrl && img.path !== storagePath);
                 if (filtered.length) {
                     localStorage.setItem(`portfolio_${category}`, JSON.stringify(filtered));
                 } else {
@@ -281,12 +288,12 @@
                 }
             }
 
-            function processImageFile(file, category, uploadSlot, originalContent) {
+            async function processImageFile(file, category, uploadSlot, originalContent) {
                 const reader = new FileReader();
                 reader.onload = function (e) {
                     const imageUrl = e.target.result;
                     const img = new Image();
-                    img.onload = function () {
+                    img.onload = async function () {
                         try {
                             const targetWidth = 1200;
                             const targetHeight = 1200;
@@ -299,18 +306,31 @@
                             canvas.height = scaledHeight;
                             ctx.drawImage(img, 0, 0, scaledWidth, scaledHeight);
                             const resizedImageUrl = canvas.toDataURL('image/jpeg', 0.40);
+                            let uploadResult = { url: resizedImageUrl, path: null };
+                            if (typeof uploadImageToFirebase === 'function') {
+                                try {
+                                    uploadResult = await uploadImageToFirebase(category, file.name, resizedImageUrl);
+                                } catch (uploadError) {
+                                    console.error('Firebase upload failed:', uploadError);
+                                }
+                            }
+                            const portfolioUrl = uploadResult.url || resizedImageUrl;
                             const portfolioGrid = uploadSlot.closest('.portfolio-grid');
                             const newItem = document.createElement('div');
                             newItem.className = 'portfolio-item loaded';
-                            newItem.style.backgroundImage = `url('${resizedImageUrl}')`;
+                            newItem.style.backgroundImage = `url('${portfolioUrl}')`;
+                            if (uploadResult.path) {
+                                newItem.setAttribute('data-path', uploadResult.path);
+                            }
                             portfolioGrid.insertBefore(newItem, uploadSlot);
                             newItem.addEventListener('click', function () {
                                 handlePortfolioClick(this);
                             });
-                            addRemoveButton(newItem, category, resizedImageUrl);
+                            addRemoveButton(newItem, category, portfolioUrl, uploadResult.path);
                             const storedImages = JSON.parse(localStorage.getItem(`portfolio_${category}`) || '[]');
                             storedImages.push({
-                                url: resizedImageUrl,
+                                url: portfolioUrl,
+                                path: uploadResult.path,
                                 name: file.name,
                                 timestamp: Date.now(),
                                 originalWidth: img.width,
@@ -356,12 +376,15 @@
                     newItem.className = 'portfolio-item lazy-loading';
                     newItem.setAttribute('data-src', imageData.url);
                     newItem.setAttribute('data-loaded', 'false');
+                    if (imageData.path) {
+                        newItem.setAttribute('data-path', imageData.path);
+                    }
                     newItem.innerHTML = '<div class="image-placeholder"><div class="loading-spinner"></div></div>';
                     portfolioGrid.insertBefore(newItem, uploadSlot);
                     newItem.addEventListener('click', function () {
                         handlePortfolioClick(this);
                     });
-                    addRemoveButton(newItem, category, imageData.url);
+                    addRemoveButton(newItem, category, imageData.url, imageData.path);
                 });
             }
 
@@ -552,7 +575,12 @@
             });
 
             loadStoredImages(currentCategory);
-            setTimeout(initializeLazyLoading, 100);
+            if (typeof loadRemoteImages === 'function') {
+                loadRemoteImages(currentCategory, document.querySelector('.portfolio-grid'), document.querySelector('.portfolio-grid .upload-slot'))
+                    .finally(() => setTimeout(initializeLazyLoading, 100));
+            } else {
+                setTimeout(initializeLazyLoading, 100);
+            }
         });
     </script>
 </body>
